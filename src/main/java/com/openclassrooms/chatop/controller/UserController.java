@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.openclassrooms.chatop.model.User;
 import com.openclassrooms.chatop.service.UserService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -31,8 +30,8 @@ public class UserController {
     }
     
     @GetMapping("/auth/me")
-    public String getMethodName(@RequestParam String param) {
-        return new String();
+    public User getCurrentUser() {
+    	return userService.getCurrentUser();
     }
     
 }
