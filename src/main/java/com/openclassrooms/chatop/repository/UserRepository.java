@@ -8,4 +8,5 @@ import com.openclassrooms.chatop.model.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
+	User findByUsername(String username);
 }

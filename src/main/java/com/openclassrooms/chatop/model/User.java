@@ -14,6 +14,8 @@ public class User {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+	
+	private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -39,6 +41,14 @@ public class User {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+    
+    public void setUsername(String username) {
+        this.username = username;
     }
 	
 }
