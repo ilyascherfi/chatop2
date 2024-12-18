@@ -1,6 +1,5 @@
 package com.openclassrooms.chatop.configuration;
 
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,39 +17,37 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 
-
 @Configuration
 public class SpringSecurityConfig {
-	@Value("${chatop.app.jwtSecret}")
-	private String jwtKey;
-	
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {		
-		return http
-				.csrf(csrf -> csrf.disable())
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
-				.httpBasic(Customizer.withDefaults())
-				.build();		
-	}
-	
-	@Bean
-	public UserDetailsService users() {
-		UserDetails user = User.builder().username("user").password(passwordEncoder().encode("password")).roles("USER")
-				.build();		
-		return new InMemoryUserDetailsManager(user);
-	}
+    @Value("${chatop.app.jwtSecret}")
+    private String jwtKey;
 
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return http
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())
+                .build();
+    }
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-	
-	@Bean
-	public JwtEncoder jwtEncoder() {
-		return new NimbusJwtEncoder(new ImmutableSecret<>(this.jwtKey.getBytes()));
-	}
+    @Bean
+    public UserDetailsService users() {
+        UserDetails user = User.builder().username("user").password(passwordEncoder().encode("password")).roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(user);
+    }
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
+    @Bean
+    public JwtEncoder jwtEncoder() {
+        return new NimbusJwtEncoder(new ImmutableSecret<>(this.jwtKey.getBytes()));
+    }
 }
