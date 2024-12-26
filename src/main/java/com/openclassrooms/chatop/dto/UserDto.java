@@ -2,9 +2,14 @@ package com.openclassrooms.chatop.dto;
 
 public class UserDto {
 	
-	private String username;
-    private String password;
+    private String username;
+
     private String email;
+
+    private String password;
+
+    // Constructeur sans argument requis par les frameworks pour la désérialisation
+    public UserDto() {}
 
     // Getters et Setters
     public String getUsername() {
@@ -15,19 +20,19 @@ public class UserDto {
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-    
-    public void setEmail(String email) {
-    	this.email = email;
-    }
-    
-    public String getEmail() {
-    	return email;
     }
 }

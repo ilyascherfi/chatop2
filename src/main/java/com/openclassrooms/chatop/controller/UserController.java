@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.openclassrooms.chatop.dto.UserDto;
 import com.openclassrooms.chatop.model.User;
 import com.openclassrooms.chatop.service.UserService;
 
@@ -40,8 +41,8 @@ public class UserController {
     }
     
     @PostMapping("/auth/register")
-    public User registerUser(@RequestBody User user) {
-        return userService.saveUser(user);
+    public User registerUser(@RequestBody UserDto userDto) {
+    	return userService.saveUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
     }
     
 }

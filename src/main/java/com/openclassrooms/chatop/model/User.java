@@ -10,6 +10,15 @@ import lombok.Data;
 @Entity
 @Table(name = "USERS", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
+	
+	public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+	
+	public User() {
+    }
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
