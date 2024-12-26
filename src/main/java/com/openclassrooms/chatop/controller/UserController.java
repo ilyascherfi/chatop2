@@ -42,7 +42,9 @@ public class UserController {
     
     @PostMapping("/auth/register")
     public User registerUser(@RequestBody UserDto userDto) {
+    	System.out.println(userDto.getEmail());
     	return userService.saveUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
+    	
     }
     
 }
