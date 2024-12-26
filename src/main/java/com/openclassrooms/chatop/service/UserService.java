@@ -34,11 +34,11 @@ public class UserService {
     	userRepository.deleteById(id);
     }
     
-    public User saveUser(UserDto userDto) {
+    public User saveUser(String username, String email, String password) {
         User createdUser = new User();
         createdUser.setUsername(username);
         createdUser.setEmail(email);
-        createdUser.setPassword(encodedPassword);
+        createdUser.setPassword(email);
 
       
         return userRepository.save(createdUser);
