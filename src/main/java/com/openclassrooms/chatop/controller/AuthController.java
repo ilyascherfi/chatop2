@@ -1,7 +1,6 @@
 package com.openclassrooms.chatop.controller;
 
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,6 @@ public class AuthController {
 	public JWTService jwtService;
 	private UserService userService; 
 	
-	@Autowired
 	public AuthController(UserService userService, JWTService jwtService) {
 		this.jwtService = jwtService;
 		this.userService = userService;
@@ -34,7 +32,7 @@ public class AuthController {
 	
 	@PostMapping("/auth/register")
 	public RegisterResponse registerUser(@RequestBody RegisterRequest registerRequest) {
-		 User createdUser = userService.saveUser(registerRequest.getUsername(), registerRequest.getEmail(), registerRequest.getPassword())
+		 User createdUser = userService.saveUser(registerRequest.getUsername(), registerRequest.getEmail(), registerRequest.getPassword());
 		 return new RegisterResponse(createdUser.getId(), createdUser.getUsername());
 	}
 	
