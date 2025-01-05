@@ -1,15 +1,12 @@
 package com.openclassrooms.chatop.service;
 
 
-
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.openclassrooms.chatop.dto.UserDto;
 import com.openclassrooms.chatop.model.User;
 import com.openclassrooms.chatop.repository.UserRepository;
 
@@ -21,24 +18,20 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+	private PasswordEncoder passwordEncoder;
     
-    public Optional<User> getUser(final long id) {
-    	return userRepository.findById(id); 
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
-    
-    public Iterable<User> getUsers() {
-    	return userRepository.findAll();
-    }
-    
-    public void deleteUser(final long id) {
-    	userRepository.deleteById(id);
-    }
+
     
     public User saveUser(String username, String email, String password) {
         User createdUser = new User();
+        String encryptedPassword = passwordEncoder.encode(password);
         createdUser.setUsername(username);
         createdUser.setEmail(email);
-        createdUser.setPassword(email);
+        createdUser.setPassword(encryptedPassword);
 
       
         return userRepository.save(createdUser);

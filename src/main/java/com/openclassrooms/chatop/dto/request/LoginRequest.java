@@ -2,8 +2,8 @@ package com.openclassrooms.chatop.dto.request;
 
 public class LoginRequest {
 	
-	public String email;
-	public String password;
+	private String email;
+	private String password;
 	
 	public LoginRequest() {
 		

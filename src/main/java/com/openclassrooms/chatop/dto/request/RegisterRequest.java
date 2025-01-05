@@ -2,9 +2,9 @@ package com.openclassrooms.chatop.dto.request;
 
 public class RegisterRequest {
 	
-	public String username;
-	public String email;
-	public String password;
+	private String username;
+	private String email;
+	private String password;
 
 	public RegisterRequest() {
 		

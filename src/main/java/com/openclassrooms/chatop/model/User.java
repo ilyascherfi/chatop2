@@ -22,7 +22,7 @@ public class User {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 	
 
     @Column(nullable = false, unique = true)
@@ -75,5 +75,11 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+	
 	
 }
