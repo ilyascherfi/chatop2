@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.openclassrooms.chatop.dto.request.LoginRequest;
 import com.openclassrooms.chatop.dto.request.RegisterRequest;
-import com.openclassrooms.chatop.dto.response.RegisterResponse;
 import com.openclassrooms.chatop.model.User;
 import com.openclassrooms.chatop.service.JWTService;
 import com.openclassrooms.chatop.service.UserService;
@@ -34,11 +33,10 @@ public class AuthController {
     }
 	
 	@PostMapping("/auth/register")
-    public String registerUser(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<String> registerUser(@RequestBody RegisterRequest registerRequest) {
         User createdUser = userService.saveUser(registerRequest.getUsername(), registerRequest.getEmail(), registerRequest.getPassword());
         String token = jwtService.authenticate(registerRequest.getEmail(), registerRequest.getPassword());
-        RegisterResponse response = new RegisterResponse(token);
-        return token;
+        return ResponseEntity.ok(token);
     }
 	
 	
