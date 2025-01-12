@@ -1,38 +1,14 @@
 package com.openclassrooms.chatop.dto;
 
+import lombok.Data;
+
+import java.time.LocalDate;
+
+@Data
 public class UserDto {
-	
-    private String username;
-
-    private String email;
-
-    private String password;
-
-    // Constructeur sans argument requis par les frameworks pour la désérialisation
-    public UserDto() {}
-
-    // Getters et Setters
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    Long id;
+    String name;
+    String email;
+    LocalDate created_at;
+    LocalDate updated_at;
 }
