@@ -2,7 +2,7 @@ package com.openclassrooms.chatop.dto.request;
 
 public class RegisterRequest {
 	
-	private String username;
+	private String name;
 	private String email;
 	private String password;
 
@@ -11,12 +11,12 @@ public class RegisterRequest {
 	}
 	
 	// Getters et Setters
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNname(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
