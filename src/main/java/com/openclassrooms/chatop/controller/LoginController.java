@@ -34,6 +34,7 @@ public class LoginController {
     public ResponseEntity<Map<String, String>> getToken(@Valid @RequestBody LoginRequest loginRequest) {
         if (userService.existsByEmail(loginRequest.getEmail())) {
             String token = jwtService.generateToken( loginRequest.getEmail());
+            System.out.println("ceci est le token: " + token);
             return ResponseEntity.ok(Map.of("token", token));
         } else {
             return ResponseEntity.badRequest().body(Map.of("message", "User does not exist"));
