@@ -26,10 +26,10 @@ public class UserService {
     }
 
     
-    public User saveUser(String username, String email, String password) {
+    public User saveUser(String name, String email, String password) {
         User createdUser = new User();
         String encryptedPassword = passwordEncoder.encode(password);
-        createdUser.setUsername(username);
+        createdUser.setName(name);
         createdUser.setEmail(email);
         createdUser.setPassword(encryptedPassword);
 
