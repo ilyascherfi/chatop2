@@ -3,10 +3,7 @@ package com.openclassrooms.chatop.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "RENTALS")
