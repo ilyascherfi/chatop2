@@ -44,30 +44,30 @@ public class LoginController {
 
     @PostMapping("/register")
     public ResponseEntity<Map<String, String>> register(@Valid @RequestBody RegisterRequest registerRequest) {
-        // Vérifier si l'utilisateur existe déjà
+
         if (userService.saveUser(registerRequest) == null) {
             return ResponseEntity.badRequest().body(Map.of("message", "User already exists"));
         }
 
         String token = jwtService.generateToken(registerRequest.getEmail());
 
-        // Retourner le token JWT dans la réponse
+
         return ResponseEntity.ok(Map.of("token", token));
     }
     @GetMapping("/me")
     public ResponseEntity<UserDto> getCurrentUser() {
-        // Récupérer l'objet Authentication depuis le SecurityContext
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated() || "anonymousUser".equals(authentication.getPrincipal())) {
             return ResponseEntity.status(401).build(); // Retourner une erreur 401 si non authentifié
         }
 
-        // Extraire les détails de l'utilisateur
+
         Jwt jwt = (Jwt) authentication.getPrincipal();
 
         String email = jwt.getClaim("email");
-        // Récupérer l'utilisateur à partir du service
+
         UserDto user = userService.getUserByEmail(email);
 
         if (user == null) {

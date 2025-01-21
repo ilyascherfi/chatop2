@@ -46,13 +46,11 @@ public class UserService {
     }
 
     public UserDto getUserByEmail(String email) {
-        // convert User to UserDto
+
         User user = userRepository.findByEmail(email);
         if (user == null) {
             return null;
         }
-
-        // Convertir l'entité User en DTO UserDto
         return modelMapper.map(user, UserDto.class);
     }
 

@@ -39,18 +39,17 @@ public class RentalService {
         rentalToSave.setCreated_at(LocalDate.now());
         rentalToSave.setUpdated_at(LocalDate.now());
 
-        // Récupérer l'objet Authentication depuis le SecurityContext
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated() || "anonymousUser".equals(authentication.getPrincipal())) {
-            return null; // Retourner une erreur 401 si non authentifié
+            return null;
         }
 
-        // Extraire les détails de l'utilisateur
+
         Jwt jwt = (Jwt) authentication.getPrincipal();
 
         String email = jwt.getClaim("email");
-        // Récupérer l'utilisateur à partir du service
+
         UserDto user = userService.getUserByEmail(email);
 
         rentalToSave.setOwner_id(user.getId());
@@ -75,18 +74,18 @@ public class RentalService {
             return null;
         }
 
-        // Récupérer l'objet Authentication depuis le SecurityContext
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated() || "anonymousUser".equals(authentication.getPrincipal())) {
-            return null; // Retourner une erreur 401 si non authentifié
+            return null;
         }
 
-        // Extraire les détails de l'utilisateur
+
         Jwt jwt = (Jwt) authentication.getPrincipal();
 
         String email = jwt.getClaim("email");
-        // Récupérer l'utilisateur à partir du service
+
         UserDto user = userService.getUserByEmail(email);
 
         if (!rentalToUpdate.getOwner_id().equals(user.getId()) ) {

@@ -65,7 +65,7 @@ public class RentalController {
         return ResponseEntity.ok(rental);
     }
 
-    // put rental
+
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, String>> updateRental(@PathVariable Long id, @Valid @ModelAttribute  RentalRequest rental) throws IOException {
         try {
