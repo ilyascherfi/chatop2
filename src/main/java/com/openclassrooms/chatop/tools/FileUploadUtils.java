@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 public class FileUploadUtils {
-    private static final String BASE_URL = "http://localhost:9090";
+    private static final String BASE_URL = "http://localhost:3001";
     private static final String UPLOAD_DIR = "src/main/resources/static/uploads";
 
     /**
