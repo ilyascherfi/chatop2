@@ -7,11 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import com.openclassrooms.chatop.dto.RentalRequest;
 import com.openclassrooms.chatop.model.Rental;
 import com.openclassrooms.chatop.service.RentalService;
-
+import com.openclassrooms.chatop.service.CloudinaryService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +22,11 @@ import java.util.Map;
 public class RentalController {
 
     RentalService rentalService;
+    CloudinaryService cloudinaryService;
 
-    public RentalController(RentalService rentalService) {
+    public RentalController(RentalService rentalService, CloudinaryService cloudinaryService) {
         this.rentalService = rentalService;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -34,12 +36,16 @@ public class RentalController {
                                                                 @RequestParam("description") String description,
                                                                 @RequestParam("picture") MultipartFile picture) throws IOException {
 
+        // Télécharger l'image sur Cloudinary
+        Map result = cloudinaryService.uploadImage(picture);
+        String imageUrl = (String) result.get("url");
+
         RentalRequest rental = new RentalRequest();
         rental.setName(name);
         rental.setSurface(surface);
         rental.setPrice(price);
         rental.setDescription(description);
-        rental.setPicture(picture);
+        rental.setPicture(imageUrl);
 
         if (rentalService.saveRental(rental)==null) {
             return ResponseEntity.badRequest().body(Map.of("message", "Rental already exists"));

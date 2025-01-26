@@ -33,9 +33,7 @@ public class RentalService {
         rentalToSave.setDescription(rental.getDescription());
         rentalToSave.setSurface(rental.getSurface());
 
-        String picturePath = FileUploadUtils.saveFile(rental.getPicture());
-
-        rentalToSave.setPicture(picturePath);
+        rentalToSave.setPicture(rental.getPicture());
         rentalToSave.setCreated_at(LocalDate.now());
         rentalToSave.setUpdated_at(LocalDate.now());
 

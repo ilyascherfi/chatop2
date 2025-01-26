@@ -8,6 +8,6 @@ public class RentalRequest {
     private String name;
     private Double surface;
     private Double price;
-    private MultipartFile picture;
+    private String picture;
     private String description;
 }
