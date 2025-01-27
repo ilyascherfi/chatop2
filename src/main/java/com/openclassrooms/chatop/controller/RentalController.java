@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.openclassrooms.chatop.dto.RentalRequest;
 import com.openclassrooms.chatop.model.Rental;
 import com.openclassrooms.chatop.service.RentalService;

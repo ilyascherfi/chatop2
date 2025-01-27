@@ -1,7 +1,6 @@
 package com.openclassrooms.chatop.dto;
 
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class RentalRequest {

@@ -60,7 +60,7 @@ public class LoginController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated() || "anonymousUser".equals(authentication.getPrincipal())) {
-            return ResponseEntity.status(401).build(); // Retourner une erreur 401 si non authentifié
+            return ResponseEntity.status(401).build();
         }
 
 
@@ -71,7 +71,7 @@ public class LoginController {
         UserDto user = userService.getUserByEmail(email);
 
         if (user == null) {
-            return ResponseEntity.status(404).build(); // Retourner une erreur 404 si l'utilisateur n'est pas trouvé
+            return ResponseEntity.status(404).build();
         }
 
         return ResponseEntity.ok(user);

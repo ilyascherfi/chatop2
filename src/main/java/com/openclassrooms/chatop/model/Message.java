@@ -3,7 +3,6 @@ package com.openclassrooms.chatop.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Entity

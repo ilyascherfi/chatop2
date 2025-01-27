@@ -37,7 +37,7 @@ public class SpringSecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
                                 "/api/auth/login",
-                                "/api/auth/register", // Corrigé avec le préfixe complet
+                                "/api/auth/register",
                                 "/uploads/**").permitAll()
                         .anyRequest().authenticated()
                 )

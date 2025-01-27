@@ -11,7 +11,6 @@ import com.openclassrooms.chatop.dto.RentalRequest;
 import com.openclassrooms.chatop.dto.UserDto;
 import com.openclassrooms.chatop.model.Rental;
 import com.openclassrooms.chatop.repository.RentalRepository;
-import com.openclassrooms.chatop.tools.FileUploadUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -87,7 +86,7 @@ public class RentalService {
         UserDto user = userService.getUserByEmail(email);
 
         if (!rentalToUpdate.getOwner_id().equals(user.getId()) ) {
-            throw new AccessDeniedException("User is not authorized"); // Lever une exception standard pour retourner 401/403
+            throw new AccessDeniedException("User is not authorized");
         }
 
         rentalToUpdate.setName(rental.getName());

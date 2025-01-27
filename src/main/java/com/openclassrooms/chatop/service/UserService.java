@@ -3,7 +3,6 @@ package com.openclassrooms.chatop.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,6 @@ import com.openclassrooms.chatop.dto.UserDto;
 import com.openclassrooms.chatop.model.User;
 import com.openclassrooms.chatop.repository.UserRepository;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Service
